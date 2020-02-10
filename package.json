@@ -1,13 +1,14 @@
 {
-  "name": "nodejs-katas",
+  "name": "helloworld",
   "version": "1.0.0",
   "description": "Basic Node.js exercises",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "lint": "eslint test",
-    "test": "mocha test/**/*-test.js",
-    "watch": "npm test -- -w"
+    "lint": "eslint ./test ./src",
+    "test": "npm run lint && mocha ./test/test.js -w",
+    "watch": "npm test -- -w",
+    "lint-fix":"npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,6 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "got": "^10.4.0"
+    "got": "^10.5.2"
   }
 }
