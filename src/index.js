@@ -1,12 +1,10 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 8000;
+const events = require('events');
 
 
 app.get('/', (req, res) => {
-
-
     const htmlPath = path.join(__dirname, 'index.html');
 
     res.sendFile(htmlPath);
@@ -19,24 +17,27 @@ class MyServer {
     }
 
     async startServer () {
-        const promise = new Promise(resolve => {
-            this.server = app.listen(port, resolve);
-        });
-
-        await promise
-            .then(() => console.log('Server started succesfully'))
-            .catch(() => console.log('Server cant start for some reason'));
-
+        try {
+            this.server = app.listen(this.port);
+            await events.once(this.server, 'listening');
+            console.log('Succes start');
+        }
+        catch (err) {
+            console.log('cant start');
+            throw err;
+        }
     }
 
     async stopServer () {
-        const promise = new Promise(resolve => {
-            this.server.close(resolve);
-        });
-
-        await promise
-            .then(() => console.log('Server stopped'))
-            .catch(() => console.log('Server cant stop for some reasons'));
+        try {
+            this.server.close();
+            await events.once(this.server, 'close');
+            console.log('Succes finish');
+        }
+        catch (err) {
+            console.log('Cant stop server');
+            throw err;
+        }
     }
 }
 

@@ -6,8 +6,11 @@ describe('return type check', () => {
     const newInstance = new cur.MyServer(8000);
 
     before(() => {
-
         newInstance.startServer();
+    });
+
+    after(() => {
+        newInstance.stopServer();
     });
 
     it('Check 200 http and Name', async () => {

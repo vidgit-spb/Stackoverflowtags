@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "lint": "eslint ./test ./src",
-    "test": "npm run lint && mocha ./test/test.js -w",
+    "test": "npm run lint && mocha ./test/test.js",
     "watch": "npm test -- -w",
     "lint-fix":"npm run lint -- --fix"
   },
