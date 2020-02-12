@@ -1,14 +1,10 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const events = require('events');
+const findParentDir = require('find-parent-dir');
 
 
-app.get('/', (req, res) => {
-    const htmlPath = path.join(__dirname, 'index.html');
-
-    res.sendFile(htmlPath);
-});
+app.use(express.static(findParentDir.sync(__dirname, '.git') + 'resources'));
 
 class MyServer {
     constructor (currentPort) {

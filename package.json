@@ -2,13 +2,13 @@
   "name": "helloworld",
   "version": "1.0.0",
   "description": "Basic Node.js exercises",
-  "main": "../src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "@powershell $ENV:DEBUG='mylib:messages' && node ./src/index.js",
     "lint": "eslint ./test ./src",
     "test": "npm run lint && mocha ./test/test.js",
     "watch": "npm test -- -w",
-    "lint-fix":"npm run lint -- --fix"
+    "lint-fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,10 @@
     "sinon": "^8.1.1"
   },
   "dependencies": {
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "find-parent-dir": "^0.3.0",
     "got": "^10.5.2"
   }
 }
