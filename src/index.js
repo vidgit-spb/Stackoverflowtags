@@ -9,7 +9,7 @@ const defaultValues = require('../defaultValues.js');
 const log = debug('mylib:messages');
 
 
-app.use(express.static(path.join(path.parse(__dirname).dir, 'resources')));
+app.use(express.static(path.join(__dirname, '../resources')));
 
 class MyServer {
     constructor (currentPort = defaultValues.port) {
@@ -21,10 +21,10 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
-            log('Succes start');
+            log('Started successfully');
         }
         catch (err) {
-            log('cant start');
+            log('Started unsuccessfully');
             throw err;
         }
     }
@@ -33,17 +33,17 @@ class MyServer {
         try {
             this.server.close();
             await events.once(this.server, 'close');
-            log('Succes finish');
+            log('Finished succesfully');
         }
         catch (err) {
-            log('Cant stop server');
+            log('Finished unsuccesfully');
             throw err;
         }
     }
 }
 
 if (require.main === module) {
-    const newInstance = new MyServer(8000);
+    const newInstance = new MyServer(defaultValues.port);
 
     newInstance.startServer();
 }
