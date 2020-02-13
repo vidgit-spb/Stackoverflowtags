@@ -1,12 +1,9 @@
+const assert = require('assert');
 const got = require('got');
-const server = require('../');
-const defaultValues = require('../defaultValues.js');
-const chai  = require('chai');
-
-const expect = chai.expect;
+const server = require('../src/index.js');
 
 describe('return type check', () => {
-    const newInstance = new server.MyServer();
+    const newInstance = new server.MyServer(8000);
 
     before(async () => {
         await newInstance.startServer();
@@ -17,12 +14,11 @@ describe('return type check', () => {
     });
 
     it('Check 200 http and Name', async () => {
-        const answer = await got(`http://${defaultValues.address}:${defaultValues.port}`);
+        const answer = await got('http://localhost:8000/');
 
-        expect(answer.statusCode).to.equal(200);
-        expect(answer.body).include('Hello Node.js');
+        assert.equal(answer.statusCode, 200);
+        assert.equal(answer.body.includes('Hello Node.js'), true);
 
     });
 
 });
-
