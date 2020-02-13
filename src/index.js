@@ -12,7 +12,7 @@ const log = debug('mylib:messages');
 app.use(express.static(path.join(path.parse(__dirname).dir, 'resources')));
 
 class MyServer {
-    constructor (currentPort = defaultValues.address) {
+    constructor (currentPort = defaultValues.port) {
         this.server = null;
         this.port = currentPort;
     }
