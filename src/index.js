@@ -1,17 +1,18 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const events = require('events');
+const debug = require('debug');
+const path  = require('path');
+const defaultValues = require('../defaultValues.js');
 
 
-app.get('/', (req, res) => {
-    const htmlPath = path.join(__dirname, 'index.html');
+const log = debug('mylib:messages');
 
-    res.sendFile(htmlPath);
-});
+
+app.use(express.static(path.join(__dirname, '../resources')));
 
 class MyServer {
-    constructor (currentPort) {
+    constructor (currentPort = defaultValues.port) {
         this.server = null;
         this.port = currentPort;
     }
@@ -20,10 +21,10 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
-            console.log('Succes start');
+            log('Started successfully');
         }
         catch (err) {
-            console.log('cant start');
+            log('Started unsuccessfully');
             throw err;
         }
     }
@@ -32,17 +33,17 @@ class MyServer {
         try {
             this.server.close();
             await events.once(this.server, 'close');
-            console.log('Succes finish');
+            log('Finished succesfully');
         }
         catch (err) {
-            console.log('Cant stop server');
+            log('Finished unsuccesfully');
             throw err;
         }
     }
 }
 
 if (require.main === module) {
-    const newInstance = new MyServer(8000);
+    const newInstance = new MyServer(defaultValues.port);
 
     newInstance.startServer();
 }
