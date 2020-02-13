@@ -1,9 +1,8 @@
 const got = require('got');
 const server = require('../');
 const defaultValues = require('../defaultValues.js');
-const chai  = require('chai');
+const { expect } = require('chai');
 
-const expect = chai.expect;
 
 describe('return type check', () => {
     const newInstance = new server.MyServer();
