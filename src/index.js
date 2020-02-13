@@ -1,13 +1,18 @@
 const express = require('express');
 const app = express();
 const events = require('events');
-const findParentDir = require('find-parent-dir');
+const debug = require('debug');
+const path  = require('path');
+const defaultValues = require('../defaultValues.js');
 
 
-app.use(express.static(findParentDir.sync(__dirname, '.git') + 'resources'));
+const log = debug('mylib:messages');
+
+
+app.use(express.static(path.join(path.parse(__dirname).dir, 'resources')));
 
 class MyServer {
-    constructor (currentPort) {
+    constructor (currentPort = defaultValues.address) {
         this.server = null;
         this.port = currentPort;
     }
@@ -16,10 +21,10 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
-            console.log('Succes start');
+            log('Succes start');
         }
         catch (err) {
-            console.log('cant start');
+            log('cant start');
             throw err;
         }
     }
@@ -28,10 +33,10 @@ class MyServer {
         try {
             this.server.close();
             await events.once(this.server, 'close');
-            console.log('Succes finish');
+            log('Succes finish');
         }
         catch (err) {
-            console.log('Cant stop server');
+            log('Cant stop server');
             throw err;
         }
     }
