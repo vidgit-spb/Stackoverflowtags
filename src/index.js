@@ -2,15 +2,11 @@ const express = require('express');
 const app = express();
 const events = require('events');
 const debug = require('debug');
-const path  = require('path');
+const path = require('path');
 const defaultValues = require('../defaultValues.js');
-
-
 const log = debug('mylib:messages');
 
-
 app.use(express.static(path.join(__dirname, '../resources')));
-
 class MyServer {
     constructor (currentPort = defaultValues.port) {
         this.server = null;
@@ -21,6 +17,7 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
+
             log('Started successfully');
         }
         catch (err) {

@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "start-debug":"cross-env DEBUG='mylib:messages' npm run start",
+    "start-debug": "cross-env DEBUG='mylib:messages' npm run start",
     "lint": "eslint ./test ./src",
     "test": "npm run lint && mocha ./test/test.js",
     "watch": "npm test -- -w",
