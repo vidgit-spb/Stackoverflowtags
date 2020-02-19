@@ -1,12 +1,12 @@
 {
-  "name": "helloworld",
+  "name": "stackoverflowtags",
   "version": "1.0.0",
   "description": "Basic Node.js exercises",
   "main": "src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "start-debug":"cross-env DEBUG='mylib:messages' npm run start",
-    "lint": "eslint ./test ./src",
+    "start-debug":"cross-env DEBUG=mylib:* npm run start",
+    "lint": "eslint ./test ./src/index.js",
     "test": "npm run lint && mocha ./test/test.js",
     "watch": "npm test -- -w",
     "lint-fix": "npm run lint -- --fix"
