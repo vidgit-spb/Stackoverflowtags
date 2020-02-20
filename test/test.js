@@ -1,6 +1,6 @@
-const server = require('../');
 const got = require('got');
 const { expect } = require('chai');
+const server = require('../');
 const defaultValues = require('../defaultValues.js');
 
 
@@ -24,4 +24,5 @@ describe('return type check', () => {
     });
 
 });
+
 

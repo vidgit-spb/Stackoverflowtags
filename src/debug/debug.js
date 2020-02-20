@@ -1,7 +1,7 @@
 const debug = require('debug');
 
 module.exports = {
-    log:   debug('mylib:log'),
-    warn:  debug('mylib:warn'),
-    error: debug('mylib:error')
+    log:   debug('stackoverflowtags:log'),
+    warn:  debug('stackoverflowtags:warn'),
+    error: debug('stackoverflowtags:error')
 };
