@@ -1,4 +1,9 @@
 const express = require('express');
+const debug = require('./debug/debug');
+const URL = require('./url');
+const getAPIData = require('./api');
+
+
 const app = express();
 const events = require('events');
 const debug = require('debug');
@@ -7,6 +12,18 @@ const defaultValues = require('../defaultValues.js');
 const log = debug('mylib:messages');
 
 app.use(express.static(path.join(__dirname, '../resources')));
+app.use(express.static(path.join(__dirname, '../src')));
+
+app.get(URL, async (req, res) => {
+
+    const data = await getAPIData();
+
+    res.status(200);
+
+    await res.json(data);
+});
+
+
 class MyServer {
     constructor (currentPort = defaultValues.port) {
         this.server = null;
