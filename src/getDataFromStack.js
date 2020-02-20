@@ -1,36 +1,30 @@
 
-let bigJson = [];
-let idOfPage = 1;
-const firstDataUrl = `https://api.stackexchange.com/2.2/questions?pagesize=100&order=desc&sort=activity&tagged=testcafe&site=stackoverflow&page=1&access_token=7voa7zvjV1yTY3EeAuYo9w))&key=ItLB9rQgr9apRsaxK57fEg((`;
-const getData = async url => {
+async function getData () {
     try {
-        const response = await fetch(url);
+        const response = await fetch(URL);
         const json = await response.json();
+
         let tableHtml = '';
 
-        bigJson = bigJson.concat(json['items']);
-        if (json['has_more']) {
-            idOfPage++;
-            const requestURL = `https://api.stackexchange.com/2.2/questions?pagesize=100&order=desc&sort=activity&tagged=testcafe&site=stackoverflow&page=${idOfPage}&access_token=7voa7zvjV1yTY3EeAuYo9w))&key=ItLB9rQgr9apRsaxK57fEg((`;
-
-            getData(requestURL);
-        }
-        for (const code in bigJson) {
+        for (const code in json) {
             tableHtml += `
                <tr>
                <td>${code} </td>
-               <td>${bigJson[code].question_id} </td>
-               <td>${bigJson[code].tags} </td>
-               <td>${bigJson[code].title} </td>
+               <td>${json[code].question_id} </td>
+               <td>${json[code].tags} </td>
+               <td>${json[code].title} </td>
                <tr>
                `;
-            document.querySelector('#dataTable tbody').innerHTML = tableHtml;
         }
 
+        const table = document.querySelector('#dataTable');
+
+        if (!table)
+            throw new Error('Cannot find the root table');
+        
+        table.innerHTML = tableHtml;
     }
     catch (error) {
         console.log(error);
     }
-};
-
-getData(firstDataUrl);
+}

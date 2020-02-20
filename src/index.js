@@ -3,11 +3,24 @@ const path  = require('path');
 const express = require('express');
 const debug = require('./debug/debug');
 const defaultValues = require('../defaultValues.js');
+const URL = require('./url');
+const getAPIData = require('./api');
+
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../resources')));
 app.use(express.static(path.join(__dirname, '../src')));
+
+app.get(URL, async (req, res) => {
+
+    const data = await getAPIData();
+
+    res.status(200);
+
+    await res.json(data);
+});
+
 
 class MyServer {
     constructor (currentPort = defaultValues.port) {
