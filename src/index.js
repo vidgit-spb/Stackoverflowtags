@@ -2,7 +2,7 @@ const events = require('events');
 const path  = require('path');
 const express = require('express');
 const debug = require('./debug/debug');
-const defaultValues = require('../defaultValues.js');
+const defaultValues = require('./defaultValues.js');
 const URL = require('./url');
 const getAPIData = require('./api');
 
@@ -17,8 +17,8 @@ app.get(URL, async (req, res) => {
     const data = await getAPIData();
 
     res.status(200);
-
     await res.json(data);
+
 });
 
 

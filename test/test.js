@@ -1,7 +1,11 @@
 const got = require('got');
 const { expect } = require('chai');
 const server = require('../');
+<<<<<<< HEAD
 const defaultValues = require('../defaultValues.js');
+=======
+const defaultValues = require('../src/defaultValues.js');
+>>>>>>> 1865bed... close # 10 3/8
 
 
 describe('return type check', () => {
