@@ -1,15 +1,13 @@
+const events = require('events');
+const path = require('path');
 const express = require('express');
-const debug = require('./debug/debug');
+const debug = require('debug');
 const URL = require('./url');
 const getAPIData = require('./api');
+const defaultValues = require('./defaultValues');
 
-
-const app = express();
-const events = require('events');
-const debug = require('debug');
-const path = require('path');
-const defaultValues = require('../defaultValues.js');
 const log = debug('mylib:messages');
+const app = express();
 
 app.use(express.static(path.join(__dirname, '../resources')));
 app.use(express.static(path.join(__dirname, '../src')));
@@ -19,8 +17,8 @@ app.get(URL, async (req, res) => {
     const data = await getAPIData();
 
     res.status(200);
-
     await res.json(data);
+
 });
 
 
