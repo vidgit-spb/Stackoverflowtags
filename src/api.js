@@ -10,9 +10,7 @@ module.exports = async function getData () {
         let bigJson = [];
         let hasMore = true;    
         maxItems  = defaultValues.maxItems;
-        console.log(maxItems);
         for (let pageId = 1; hasMore && maxItems>0; pageId++) {
-            console.log(URL({ pageId }))
             maxItems  -= 100;
             const response = await fetch(URL({ pageId }));
             const json = await response.json();

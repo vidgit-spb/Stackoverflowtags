@@ -1,12 +1,12 @@
 const events = require('events');
-const path  = require('path');
+const path = require('path');
 const express = require('express');
 const debug = require('./debug/debug');
-const defaultValues = require('./defaultValues.js');
 const URL = require('./url');
 const getAPIData = require('./api');
+const defaultValues = require('./defaultValues');
 
-
+// const log = debug('stackoverflowmessages:messages');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../resources')));
@@ -32,10 +32,11 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
+
             debug.log('Started successfully');
         }
         catch (err) {
-            debug.error('Started unsuccessfully');
+            debug.log('Started unsuccessfully');
             throw err;
         }
     }
@@ -47,7 +48,7 @@ class MyServer {
             debug.log('Finished succesfully');
         }
         catch (err) {
-            debug.error('Finished unsuccesfully');
+            debug.log('Finished unsuccesfully');
             throw err;
         }
     }

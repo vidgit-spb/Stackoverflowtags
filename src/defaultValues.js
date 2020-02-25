@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const DEFAULT_PORT   = 8000;
 const DEFAULT_ADDRESS = 'localhost';
-const maxItems = 283;
+const maxItems = 28;
 const key = process.env.ACCESS_KEY;
 const token = process.env.ACCESS_TOKEN;
 module.exports = {
