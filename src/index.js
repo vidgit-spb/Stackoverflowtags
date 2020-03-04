@@ -6,7 +6,6 @@ const URL = require('./url');
 const getAPIData = require('./api');
 const defaultValues = require('./defaultValues');
 
-// const log = debug('stackoverflowmessages:messages');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../resources')));
@@ -20,6 +19,13 @@ app.get(URL, async (req, res) => {
     await res.json(data);
 
 });
+
+app.use(logErrors);
+
+function logErrors(err, req, res, next) {
+    debug.error(err.stack);
+    next(err);
+  }
 
 
 class MyServer {
