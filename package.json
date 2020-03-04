@@ -2,8 +2,7 @@
   "name": "stackoverflowtags",
   "version": "1.0.0",
   "description": "Application add tags to stackvoverflow",
-  "main": "src/index.js",
-  "type": "module",
+  "main": "lib/index.js",
   "scripts": {
     "start": "node ./src/index.js",
     "start-debug": "cross-env DEBUG=stackoverflowtags:* npm run start",

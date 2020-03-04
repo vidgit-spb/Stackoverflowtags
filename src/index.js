@@ -1,7 +1,7 @@
 import events from 'events';
 import path from 'path';
-import express  from 'express';
-import debug  from './debug/debug';
+import express from 'express';
+import debug from './debug/debug';
 import URL from './url';
 import getAPIData from './api.js';
 import defaultValues from './defaultValues';
@@ -28,7 +28,7 @@ function logErrors (err, req, res, next) {
 }
 
 
-class MyServer {
+export class MyServer {
     constructor (currentPort = defaultValues.port) {
         this.server = null;
         this.port = currentPort;
@@ -65,5 +65,5 @@ if (require.main === module) {
     newInstance.startServer();
 }
 
-export default MyServer = MyServer;
+// export default MyServer = MyServer;
 
