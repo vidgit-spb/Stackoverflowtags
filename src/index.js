@@ -22,10 +22,10 @@ app.get(URL, async (req, res) => {
 
 app.use(logErrors);
 
-function logErrors(err, req, res, next) {
+function logErrors (err, req, res, next) {
     debug.error(err.stack);
     next(err);
-  }
+}
 
 
 class MyServer {

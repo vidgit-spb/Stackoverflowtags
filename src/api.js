@@ -4,10 +4,6 @@ const debug = require('./debug/debug');
 const got  = require('got');
 const qs = require('qs');
 
-let bigJson = [];
-let hasMore = true;
-let maxItems = defaultValues.maxItems;
-
 const params = qs.stringify({
     pagesize: 100,
     order: 'desc',
@@ -21,6 +17,9 @@ const url = `https://api.stackexchange.com/2.2/questions?${params}`;
 
 module.exports = async function getData () {
     try {    
+        let bigJson = [];
+        let hasMore = true;
+        let maxItems = defaultValues.maxItems;
         for (let pageId = 1; hasMore && maxItems>0; pageId++) {
             maxItems  -= params.pagesize;
 
