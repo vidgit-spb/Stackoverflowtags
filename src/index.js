@@ -1,15 +1,32 @@
-const express = require('express');
-const app = express();
 const events = require('events');
-const debug = require('debug');
-const path  = require('path');
-const defaultValues = require('../defaultValues.js');
+const path = require('path');
+const express = require('express');
+const debug = require('./debug/debug');
+const URL = require('./url');
+const getAPIData = require('./api');
+const defaultValues = require('./defaultValues');
 
-
-const log = debug('mylib:messages');
-
+const app = express();
 
 app.use(express.static(path.join(__dirname, '../resources')));
+app.use(express.static(path.join(__dirname, '../src')));
+
+app.get(URL, async (req, res) => {
+
+    const data = await getAPIData();
+
+    res.status(200);
+    await res.json(data);
+
+});
+
+app.use(logErrors);
+
+function logErrors (err, req, res, next) {
+    debug.error(err.stack);
+    next(err);
+}
+
 
 class MyServer {
     constructor (currentPort = defaultValues.port) {
@@ -21,10 +38,11 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
-            log('Started successfully');
+
+            debug.log('Started successfully');
         }
         catch (err) {
-            log('Started unsuccessfully');
+            debug.log('Started unsuccessfully');
             throw err;
         }
     }
@@ -33,10 +51,10 @@ class MyServer {
         try {
             this.server.close();
             await events.once(this.server, 'close');
-            log('Finished succesfully');
+            debug.log('Finished succesfully');
         }
         catch (err) {
-            log('Finished unsuccesfully');
+            debug.log('Finished unsuccesfully');
             throw err;
         }
     }
