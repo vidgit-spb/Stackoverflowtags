@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const defaultValues = require('./defaultValues');
 const debug = require('./debug/debug');
 const got  = require('got');
