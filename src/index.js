@@ -1,10 +1,10 @@
-const events = require('events');
-const path = require('path');
-const express = require('express');
-const debug = require('./debug/debug');
-const URL = require('./url');
-const getAPIData = require('./api');
-const defaultValues = require('./defaultValues');
+import events from 'events';
+import path from 'path';
+import express  from 'express';
+import debug  from './debug/debug';
+import URL from './url';
+import getAPIData from './api.js';
+import defaultValues from './defaultValues';
 
 const app = express();
 
@@ -38,7 +38,6 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
-
             debug.log('Started successfully');
         }
         catch (err) {
@@ -66,5 +65,5 @@ if (require.main === module) {
     newInstance.startServer();
 }
 
-module.exports.MyServer = MyServer;
+export default MyServer = MyServer;
 

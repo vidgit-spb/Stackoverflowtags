@@ -1,4 +1,4 @@
-const debug = require('debug');
+import  debug from  'debug';
 
 module.exports = {
     log:   debug('stackoverflowtags:log'),
