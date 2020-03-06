@@ -7,7 +7,7 @@
     "start": "node ./src/index.js",
     "start-debug": "cross-env DEBUG=stackoverflowtags:* npm run start",
     "lint": "eslint ./test ./src/index.js",
-    "test": "npm run lint && mocha ./test/test.js",
+    "test": "tsc && npm run lint && mocha ./test/test.js",
     "watch": "npm test -- -w",
     "lint-fix": "npm run lint -- --fix"
   },
