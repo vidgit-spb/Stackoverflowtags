@@ -65,5 +65,4 @@ if (require.main === module) {
     newInstance.startServer();
 }
 
-// export default MyServer = MyServer;
 
