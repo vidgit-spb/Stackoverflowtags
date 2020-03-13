@@ -1,15 +1,15 @@
 import events from 'events';
 import path from 'path';
 import express from 'express';
-import debug from './debug/debug';
+import debug from './debug';
 import URL from './url';
 import getAPIData from './api.js';
 import defaultValues from './defaultValues';
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../resources')));
-app.use(express.static(path.join(__dirname, '../src')));
+app.use(express.static(path.join(__dirname, '../../resources')));
+app.use(express.static(path.join(__dirname, '../../lib/client')));
 
 app.get(URL, async (req, res) => {
 

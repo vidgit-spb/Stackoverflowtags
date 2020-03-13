@@ -1,7 +1,7 @@
-import defaultValues from './defaultValues';
-import debug from './debug/debug';
 import got  from'got';
 import qs from'qs';
+import defaultValues from './defaultValues';
+import debug from './debug';
 
 const params = qs.stringify({
     pagesize: 100,

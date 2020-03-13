@@ -1,13 +1,8 @@
 {
   "compilerOptions": {
-      "allowJs": true,
-      "checkJs": false,
-      "target": "es2018",
-      "esModuleInterop": true,
-      "outDir":"lib",
-      "module": "commonjs"
-  },
-      "include": [
-      "./src/**/*"
-  ]
+    "target": "es2019",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true
+  }
 }
