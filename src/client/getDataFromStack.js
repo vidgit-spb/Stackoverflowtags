@@ -2,7 +2,6 @@ import URL from '../server/url.js';
 
 export async function getData () {
     try {
-        console.log(URL + "GetData");
         const response = await fetch(URL);
         const json = await response.json();
 
