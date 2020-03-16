@@ -1,7 +1,7 @@
-const defaultValues = require('./defaultValues');
-const debug = require('./debug/debug');
-const got  = require('got');
-const qs = require('qs');
+import got  from'got';
+import qs from'qs';
+import defaultValues from './defaultValues';
+import debug from './debug';
 
 const params = qs.stringify({
     pagesize: 100,
@@ -14,7 +14,7 @@ const params = qs.stringify({
 });
 const url = `https://api.stackexchange.com/2.2/questions?${params}`;
 
-module.exports = async function getData () {
+export default  async function getData () {
     try {    
         let bigJson = [];
         let hasMore = true;

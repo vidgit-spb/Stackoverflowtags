@@ -2,8 +2,15 @@
 <html>
 <head>
     <title>Hello Node.js</title>
-    <script type="text/javascript" src="url.js"></script>
-    <script type="text/javascript" src="getDataFromStack.js"></script>  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.2.5/system.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.2.5/extras/named-register.js"></script>
+    <script type="systemjs-importmap">
+        {
+            "imports": {
+                "bundle": "./bundle.js"
+            }
+        }
+    </script>
 </head>
 <body>
     <table id="dataTable" border="1" width="100%" cellpadding="5">
@@ -12,7 +19,13 @@
         </tbody>
     </table>
     <script>
-        getData();
+        (async () => {
+            await System.import('bundle');
+
+            const { getData } = await System.import('client/getDataFromStack');
+
+            getData();
+        })()
     </script>
 </body>
 </html>

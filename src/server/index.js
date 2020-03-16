@@ -1,15 +1,15 @@
-const events = require('events');
-const path = require('path');
-const express = require('express');
-const debug = require('./debug/debug');
-const URL = require('./url');
-const getAPIData = require('./api');
-const defaultValues = require('./defaultValues');
+import events from 'events';
+import path from 'path';
+import express from 'express';
+import debug from './debug';
+import URL from './url';
+import getAPIData from './api.js';
+import defaultValues from './defaultValues';
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../resources')));
-app.use(express.static(path.join(__dirname, '../src')));
+app.use(express.static(path.join(__dirname, '../../resources')));
+app.use(express.static(path.join(__dirname, '../../lib/client')));
 
 app.get(URL, async (req, res) => {
 
@@ -28,7 +28,7 @@ function logErrors (err, req, res, next) {
 }
 
 
-class MyServer {
+export class MyServer {
     constructor (currentPort = defaultValues.port) {
         this.server = null;
         this.port = currentPort;
@@ -38,7 +38,6 @@ class MyServer {
         try {
             this.server = app.listen(this.port);
             await events.once(this.server, 'listening');
-
             debug.log('Started successfully');
         }
         catch (err) {
@@ -66,5 +65,4 @@ if (require.main === module) {
     newInstance.startServer();
 }
 
-module.exports.MyServer = MyServer;
 
