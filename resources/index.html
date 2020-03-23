@@ -25,6 +25,7 @@
             const { getData } = await System.import('client/getDataFromStack');
 
             getData();
+            setInterval(getData,5000);
         })()
     </script>
 </body>
