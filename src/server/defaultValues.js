@@ -4,7 +4,7 @@ dot.config();
 
 const DEFAULT_PORT   = 8000;
 const DEFAULT_ADDRESS = 'localhost';
-const maxItems = 28;
+const maxItems = 500;
 const key = process.env.ACCESS_KEY;
 const token = process.env.ACCESS_TOKEN;
 
