@@ -15,10 +15,12 @@ fixture`Getting Started`
 
 test('shoud change data', async t => {
 
-    await t.wait(2000)
-        .expect(TableIdSelector.innerText).eql('59791234');
-    await t.eval(() => location.reload(true));
-    await t.wait(2000)
-        .expect(TableIdSelector.innerText).eql('59744176');
+    await t
+        // .expect(TableIdSelector.innerText).eql('59791234');
+
+    let fistIdValue = TableIdSelector.innerText;
+        // await t.eval(() => location.reload(true));
+    await t
+        .expect(TableIdSelector.innerText).notEql(fistIdValue);
 
 });
