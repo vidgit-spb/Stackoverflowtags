@@ -5,7 +5,6 @@ import debug from './debug';
 import URL from './url';
 import getAPIData from './api.js';
 import defaultValues from './defaultValues';
-import MyFirstNock from './nockAdress.js';
 
 const app = express();
 
