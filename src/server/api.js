@@ -13,8 +13,8 @@ let objectParams = {
     key: defaultValues.key
 };
 
-const params = qs.stringify(objectParams);
-const url = `https://api.stackexchange.com/2.2/questions?${params}`;
+let params = qs.stringify(objectParams);
+export const urlParams = `${params}`;
 
 export default  async function getData () {
     try {    

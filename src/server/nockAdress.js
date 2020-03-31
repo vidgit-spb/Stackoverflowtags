@@ -1,10 +1,10 @@
 import nock from 'nock';
 import defaultValues from './defaultValues';
 
-let address = `http://${defaultValues.address}:${defaultValues.port}`;
 
 export default function MyFirstNock(address){
     nock(address)
+    .persist()
     .get('/')
     .reply(200, `
             <!DOCTYPE html>
@@ -36,8 +36,7 @@ export default function MyFirstNock(address){
            <td>'	testcafe execution via intelliJ run action' </td>
            <tr>
        </tbody>
-     </table>
-    
+     </table>  
     </body>
     </html>
     `);
