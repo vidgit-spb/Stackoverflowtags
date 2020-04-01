@@ -3,7 +3,7 @@ import URL from '../server/url.js';
 
 export async function getData () {
     try {
-        
+        const showAll = true;
         const response = await fetch(URL);
         const json = await response.json();
         let canadd = {
@@ -18,7 +18,6 @@ export async function getData () {
         }
 
         let tableHtml = '';
-
         for (const code in json) {
             
             let canAdd = '&#10006';
@@ -27,15 +26,15 @@ export async function getData () {
             }
             tableHtml += `
                <tr>
-               <td>${code} </td>
-               <td>${json[code].question_id} </td>
-               <td>${json[code].tags} </td>
-               <td>${json[code].title} </td>
-               <td>${canAdd}</td>
+               <td class = "hoverable">${code} </td>
+               <td class = "hoverable">${json[code].question_id} </td>
+               <td class = "hoverable">${json[code].tags} </td>
+               <td class = "hoverable">${json[code].title} </td>
+               <td class = "hoverable">${canAdd}</td>
                <tr>
                `;
         }
-
+    
         const table = document.querySelector('#dataTable');
 
         if (!table)
