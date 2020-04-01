@@ -3,7 +3,7 @@ import qs from'qs';
 import defaultValues from './defaultValues';
 import debug from './debug';
 
-const params = qs.stringify({
+let objectParams = {
     pagesize: 100,
     order: 'desc',
     sort: 'activity',
@@ -11,8 +11,14 @@ const params = qs.stringify({
     site: 'stackoverflow',
     access_token: defaultValues.token,
     key: defaultValues.key
-});
+};
+
+let params = qs.stringify(objectParams);
 const url = `https://api.stackexchange.com/2.2/questions?${params}`;
+export const urlParams = `${params}`;
+
+
+
 
 export default  async function getData () {
     try {    
@@ -20,14 +26,12 @@ export default  async function getData () {
         let hasMore = true;
         let maxItems = defaultValues.maxItems;
         for (let pageId = 1; hasMore && maxItems>0; pageId++) {
-            maxItems  -= params.pagesize;
-
-            const currentUrl = url.concat(`&page=${pageId}`);
+            maxItems -= objectParams.pagesize;
+            let currentUrl = url.concat(`&page=${pageId}`);
             const json = await got(currentUrl).json();
             bigJson = bigJson.concat(json.items);
             hasMore = json.has_more;
-        }
-        
+        };
         return bigJson.slice(0,defaultValues.maxItems);
     }
     catch (error) {

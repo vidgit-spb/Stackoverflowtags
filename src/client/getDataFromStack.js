@@ -6,18 +6,18 @@ export async function getData () {
         const json = await response.json();
 
         let tableHtml = '';
-
         for (const code in json) {
             tableHtml += `
                <tr>
-               <td>${code} </td>
-               <td>${json[code].question_id} </td>
-               <td>${json[code].tags} </td>
-               <td>${json[code].title} </td>
+               <td class = "hoverable">${code} </td>
+               <td class = "hoverable">${json[code].question_id} </td>
+               <td class = "hoverable">${json[code].tags} </td>
+               <td class = "hoverable">${json[code].title} </td>
+               <td class = "hoverable">${canAdd}</td>
                <tr>
                `;
         }
-
+    
         const table = document.querySelector('#dataTable');
 
         if (!table)
