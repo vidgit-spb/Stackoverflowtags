@@ -3,6 +3,7 @@ import qs from'qs';
 import defaultValues from './defaultValues';
 import debug from './debug';
 
+
 let objectParams = {
     pagesize: 100,
     order: 'desc',
@@ -14,6 +15,7 @@ let objectParams = {
 };
 
 let params = qs.stringify(objectParams);
+const url = `https://api.stackexchange.com/2.2/questions?${params}`;
 export const urlParams = `${params}`;
 
 export default  async function getData () {

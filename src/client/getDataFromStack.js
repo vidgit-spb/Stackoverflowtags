@@ -28,7 +28,7 @@ export async function getData () {
             tableHtml += `
                <tr>
                <td>${code} </td>
-               <td>${json[code].question_id} </td>
+               <td id = "idDataTable">${json[code].question_id} </td>
                <td>${json[code].tags} </td>
                <td>${json[code].title} </td>
                <td>${canAdd}</td>
