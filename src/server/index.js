@@ -5,6 +5,8 @@ import debug from './debug';
 import URL from './url';
 import getAPIData from './api.js';
 import defaultValues from './defaultValues';
+import nock from 'nock';
+
 
 const app = express();
 
@@ -45,7 +47,16 @@ export class MyServer {
             throw err;
         }
     }
+    startServerWithMock () {
+        const scope = nock('https://api.stackexchange.com')
+            .persist()
+            .get('/2.2/questions')
+            .query(true);
 
+        this.startServer();
+        return scope;
+
+    }
     async stopServer () {
         try {
             this.server.close();
@@ -53,6 +64,7 @@ export class MyServer {
             debug.log('Finished succesfully');
         }
         catch (err) {
+            debug.log(err);
             debug.log('Finished unsuccesfully');
             throw err;
         }

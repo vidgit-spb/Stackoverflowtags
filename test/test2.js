@@ -3,62 +3,27 @@ import nock from 'nock';
 const params = require('../lib/server/api.js');
 const server = require('../lib/server/index.js');
 import { Selector,t } from 'testcafe';
+import { answer2,answer }   from '../lib/server/answer.js';
+const { default: defaultValues } = require('../lib/server/defaultValues');
 
-const newInstance = new server.MyServer();
-    async () => {
-    await newInstance.startServer();
-}
+
+let scope;
 
 fixture `test`
-    .page `https://api.stackexchange.com/2.2/question?param=${params.urlParams}}`;
-
-const scope = nock('https://api.stackexchange.com')
-.get('/2.2/question')
-.query(true);
-
-    
-scope.reply(200, `
-<!DOCTYPE html>
-<html>
-<body>
-<table id="dataTable" border="1" width="100%" cellpadding="5">
-<tbody>
-<tr>
-<td id = "idDataTable"> 59791234 </td>
-<td> node.js,testing,intellij-idea,jestjs,testcafe </td>
-<td>'	testcafe execution via intelliJ run action' </td>
-<tr>
- </tbody>
- </table>
-
-</body>
-</html>
-`);
-
+    .page `http://${defaultValues.address}:${defaultValues.port}`
+    .before(async () => {
+        const newInstance = new server.MyServer();
+        scope = newInstance.startServerWithMock();       
+             
+    });
 const TableIdSelector = Selector('#idDataTable');
-
-
 test('testing first data', async t => {
-    
-    await t;
-    const fistId = TableIdSelector.innerText;
-    scope.reply(200,`
-    <!DOCTYPE html>
-    <html>
-    <body>
-    <table id="dataTable" border="1" width="100%" cellpadding="5">
-    <tbody>
-    <tr>
-    <td id = "idDataTable"> 59744176 </td>
-    <td> node.js,testing,intellij-idea,jestjs,testcafe </td>
-    <td>'	testcafe execution via intelliJ run action' </td>
-    <tr>
-    </tbody>
-    </table>  
-    </body>
-    </html>
-    `);
+    const firstEcpectedId = '60981232';
+    scope.reply(200,answer);
     await t
-    .expect(TableIdSelector.innerText).notEql(fistId);
-
+    .expect(TableIdSelector.innerText).eql(firstEcpectedId);
+    scope.reply(200,answer2);
+    await t.
+    wait(5000).
+    expect(TableIdSelector.innerText).notEql(firstEcpectedId);
 })
