@@ -3,6 +3,8 @@ import URL from '../server/url.js';
 
 function wrapStackObject(json){
     let tableHtml = '';
+    let tagsString = ``;
+
     for (const code in json) {
         let massTags = json[code].tags;
         let canAdd = '&#10006';
@@ -10,7 +12,7 @@ function wrapStackObject(json){
         if(massTags.length == 5){
             canAdd = '&#10004';
         }
-        let tagsString = ``;
+        
         for(const idTag in massTags){
              tagsString+= `<td class = "chip" style ="text-allign:center">${massTags[idTag]} </td>\n`
         }
@@ -32,7 +34,6 @@ export async function getData () {
     try {
         const response = await fetch(URL);
         const json = await response.json();
-        console.log(json);
         wrapStackObject(json);
         const table = document.querySelector('#dataTable');
         if (!table)
