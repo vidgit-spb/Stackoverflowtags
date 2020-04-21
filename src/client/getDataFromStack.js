@@ -9,7 +9,7 @@ export async function getData () {
         let canadd = {
             value: false,
             image(){
-                if (this.value){
+                if (this.value===true){
                     return '&#10006'
                 } else {
                     return '&#10004'

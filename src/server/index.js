@@ -47,16 +47,7 @@ export class MyServer {
             throw err;
         }
     }
-    startServerWithMock () {
-        const scope = nock('https://api.stackexchange.com')
-            .persist()
-            .get('/2.2/questions')
-            .query(true);
 
-        this.startServer();
-        return scope;
-
-    }
     async stopServer () {
         try {
             this.server.close();

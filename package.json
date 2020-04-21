@@ -7,11 +7,11 @@
     "build": "tsc -p src/server/tsconfig.json && tsc -p src/client/tsconfig.json",
     "start": "npm run build && node ./lib/server/index.js",
     "start-debug": "cross-env DEBUG=stackoverflowtags:* npm run start",
-    "lint": "eslint ./test/test.js ./src/server/index.js",
-    "test": "npm run lint && mocha ./test/test.js",
+    "lint": "eslint ./test ./src/server/index.js",
+    "test": "npm run lint && mocha ./test/api.js",
     "watch": "npm test -- -w",
     "lint-fix": "npm run lint -- --fix",
-    "testcafe": "cross-env DEBUG=stackoverflowtags:* testcafe chrome ./test/test2.js"
+    "testcafe": "cross-env DEBUG=stackoverflowtags:* testcafe chrome ./test/e2e.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "debug": "^4.1.1",
     "delay": "^4.3.0",
     "dotenv": "^8.2.0",
+    "eslint-plugin-testcafe": "^0.2.1",
     "express": "^4.17.1",
     "got": "^10.6.0",
     "nock": "^12.0.3",

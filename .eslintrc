@@ -1,4 +1,4 @@
-{
+{   
     "env": {
       "es6": true,
       "node": true,
@@ -9,7 +9,8 @@
       "ecmaVersion": "2018"
     },
     "extends": [
-      "eslint:recommended"
+      "eslint:recommended",
+      "plugin:testcafe/recommended"
     ],
     "rules": {
       "arrow-parens": [2, "as-needed"],
