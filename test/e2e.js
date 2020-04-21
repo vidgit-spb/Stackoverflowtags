@@ -1,7 +1,9 @@
 import { Selector } from 'testcafe';
 const server = require('../lib/server/index.js');
+
 import { answer, answer2 } from './testData/answer.js';
 const { default: defaultValues } = require('../lib/server/defaultValues');
+
 import nockServer from './mockTest.js';
 
 
