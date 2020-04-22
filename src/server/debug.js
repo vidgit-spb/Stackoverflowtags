@@ -1,4 +1,4 @@
-import debug from  'debug';
+import debug from 'debug';
 
 module.exports = {
     log:   debug('stackoverflowtags:log'),
