@@ -1,4 +1,4 @@
-import dot from 'dotenv'
+import dot from 'dotenv';
 dot.config();
 
 
@@ -8,12 +8,12 @@ const maxItems = 28;
 const key = process.env.ACCESS_KEY;
 const token = process.env.ACCESS_TOKEN;
 
-export default  {
+export default {
 
-    port:   process.env.PORT || DEFAULT_PORT,
+    port:     process.env.PORT || DEFAULT_PORT,
     address:  process.env.ADDRESS || DEFAULT_ADDRESS,
-    key: key,
-    token: token,
-    maxItems: process.env.maxItems||maxItems
+    key:      key,
+    token:    token,
+    maxItems: process.env.maxItems || maxItems
 
 };
