@@ -12,11 +12,11 @@ function wrapStackObject (json) {
         if (massTags.length === 5)
             canAdd = '&#10004';
 
-        
-        for (const idTag in massTags){
-            tagsString += `<div class="chip" tabindex="0"> ${massTags[idTag]} <i class="material-icons close"> X </i> </div>` 
-        }
-        tagsString +=`<input class="input" id = ${json[code].question_id}> </div>`     
+
+        for (const idTag in massTags)
+            tagsString += `<div class="chip" tabindex="0"> ${massTags[idTag]} <i class="material-icons close"> X </i> </div>`;
+
+        tagsString += `<input class="input" id = ${json[code].question_id}> </div>`;
 
         tableHtml += `
            <tr align ="center">
