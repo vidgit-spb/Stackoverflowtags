@@ -2,10 +2,9 @@ import events from 'events';
 import path from 'path';
 import express from 'express';
 import debug from './debug';
-import URL from './url';
+import { URL } from './url';
 import getAPIData from './api.js';
 import defaultValues from './defaultValues';
-
 
 const app = express();
 

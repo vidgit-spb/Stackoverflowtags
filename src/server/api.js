@@ -25,7 +25,8 @@ export default  async function getData () {
         let maxItems = defaultValues.maxItems;
         for (let pageId = 1; hasMore && maxItems>0; pageId++) {
             maxItems -= objectParams.pagesize;
-            let currentUrl = url.concat(`&page=${pageId}`);
+
+            const currentUrl = url.concat(`&page=${pageId}`);
             const json = await got(currentUrl).json();
             bigJson = bigJson.concat(json.items);
             hasMore = json.has_more;

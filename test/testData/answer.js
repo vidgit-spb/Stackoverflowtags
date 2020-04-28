@@ -1,4 +1,4 @@
-export const answerParams = {
+const originalAnswerParams  = {
     'items': [
         {
             'tags': [
@@ -29,7 +29,7 @@ export const answerParams = {
     'quota_remaining': 9964
 };
 
-const answer2Params = {
+const updatedAnswerParams = {
     'items': [
         {
             'tags': [
@@ -59,5 +59,5 @@ const answer2Params = {
     'quota_remaining': 9963
 };
 
-export const answer = JSON.stringify(answerParams);
-export const answer2 = JSON.stringify(answer2Params);
+export const originalAnswer  = JSON.stringify(originalAnswerParams);
+export const updatedAnswer  = JSON.stringify(updatedAnswerParams);

@@ -1,4 +1,4 @@
-import URL from '../server/url.js';
+import { URL }  from '../server/url.js';
 
 
 export async function getData () {
