@@ -1,5 +1,6 @@
-import nock from 'nock';
-export default async function nockServer (server) {
+const nock = require('nock');
+
+async function nockServer (server) {
     const scope = nock('https://api.stackexchange.com')
         .persist()
         .get('/2.2/questions')
@@ -9,3 +10,4 @@ export default async function nockServer (server) {
     return scope;
 }
 
+module.exports.nockServer = nockServer;

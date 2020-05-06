@@ -8,10 +8,10 @@
     "start": "npm run build && node ./lib/server/index.js",
     "start-debug": "cross-env DEBUG=stackoverflowtags:* npm run start",
     "lint": "eslint ./test ./src/server/index.js",
-    "test": "npm run lint && mocha ./test/api.js",
+    "test": "npm run lint && mocha ./test/api.js && npm run testcafe",
     "watch": "npm test -- -w",
     "lint-fix": "npm run lint -- --fix",
-    "testcafe": "cross-env DEBUG=stackoverflowtags:* testcafe chrome ./test/e2e.js"
+    "testcafe": "cross-env DEBUG=stackoverflowtags:* testcafe chrome:headless ./test/e2e.js"
   },
   "repository": {
     "type": "git",

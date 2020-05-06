@@ -59,5 +59,6 @@ const updatedAnswerParams = {
     'quota_remaining': 9963
 };
 
-export const originalAnswer  = JSON.stringify(originalAnswerParams);
-export const updatedAnswer  = JSON.stringify(updatedAnswerParams);
+module.exports.originalAnswer = JSON.stringify(originalAnswerParams);
+module.exports.updatedAnswer = JSON.stringify(updatedAnswerParams);
+

@@ -3,9 +3,7 @@ const server = require('../lib/server/index.js');
 
 import { updatedAnswer, originalAnswer } from './testData/answer.js';
 const { default: defaultValues } = require('../lib/server/defaultValues');
-
-import nockServer from './mockTest.js';
-
+const nockServer = require('./mockTest.js').nockServer;
 
 let scope;
 
@@ -16,7 +14,6 @@ fixture `test`
 
         scope  = await nockServer(newInstance);
     });
-
 const TableIdSelector = Selector('#idDataTable');
 
 test('testing first data', async t => {
