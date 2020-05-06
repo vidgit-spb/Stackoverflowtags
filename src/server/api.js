@@ -16,7 +16,6 @@ let objectParams = {
 
 let params = qs.stringify(objectParams);
 const url = `https://api.stackexchange.com/2.2/questions?${params}`;
-export const urlParams = `${params}`;
 
 export default  async function getData () {
     try {    
