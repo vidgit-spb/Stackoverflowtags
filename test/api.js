@@ -11,7 +11,9 @@ describe('check api return correct data', () => {
     let scope;
 
     before(async () => {
-        scope = await nockServer(newInstance);
+        scope = await nockServer();
+        newInstance.startServer();
+
     });
     after(() => {
         newInstance.stopServer();
@@ -19,7 +21,6 @@ describe('check api return correct data', () => {
 
 
     it('Check api', async () => {
-        scope.reply(200, testData.originalAnswer);
 
         const realAnswerBeforeUpdate = await got(`http://${defaultValues.address}:${defaultValues.port}${URL}`);
 

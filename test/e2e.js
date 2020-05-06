@@ -1,7 +1,7 @@
 import { Selector } from 'testcafe';
 const server = require('../lib/server/index.js');
 
-import { updatedAnswer, originalAnswer } from './testData/answer.js';
+import { updatedAnswer } from './testData/answer.js';
 const { default: defaultValues } = require('../lib/server/defaultValues');
 const nockServer = require('./mockTest.js').nockServer;
 
@@ -12,7 +12,10 @@ fixture `test`
     .before(async () => {
         const newInstance = new server.MyServer();
 
-        scope  = await nockServer(newInstance);
+        scope  = await nockServer();
+
+        await newInstance.startServer();
+
     });
 const TableIdSelector = Selector('#idDataTable');
 
@@ -20,7 +23,7 @@ test('testing first data', async t => {
 
     const originalExpectedId = '60981232';
 
-    scope.reply(200, originalAnswer);
+
     await t
         .expect(TableIdSelector.innerText).eql(originalExpectedId);
     scope.reply(200, updatedAnswer);
