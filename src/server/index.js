@@ -2,7 +2,7 @@ import events from 'events';
 import path from 'path';
 import express from 'express';
 import debug from './debug';
-import URL from './url';
+import { URL } from './url';
 import getAPIData from './api.js';
 import defaultValues from './defaultValues';
 
@@ -53,6 +53,7 @@ export class MyServer {
             debug.log('Finished succesfully');
         }
         catch (err) {
+            debug.log(err);
             debug.log('Finished unsuccesfully');
             throw err;
         }
