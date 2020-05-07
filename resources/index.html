@@ -9,7 +9,6 @@
     <div>
         <a href="#!" class="btn-large waves-effect waves-light" id = "changeStackData">Add tag</a>
     </div> 
-
     <script type="systemjs-importmap">
         {
             "imports": {
@@ -39,6 +38,7 @@
             const { getData } = await System.import('client/getDataFromStack');
 
             getData();
+            setInterval(getData,5000);
         })()
     </script>
 </body>

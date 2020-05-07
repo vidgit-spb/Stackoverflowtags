@@ -1,3 +1,3 @@
-const URL = '/api/questions';
+export const URL = '/api/questions';
 
-export default URL;
+

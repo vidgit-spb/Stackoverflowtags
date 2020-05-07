@@ -1,4 +1,5 @@
-import URL from '../server/url.js';
+import { URL }  from '../server/url.js';
+
 
 
 function wrapStackObject (json) {
@@ -35,6 +36,7 @@ function wrapStackObject (json) {
 
 export async function getData () {
     try {
+        
         const response = await fetch(URL);
         const json = await response.json();
         const table = document.querySelector('#dataTable');
