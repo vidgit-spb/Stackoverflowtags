@@ -5,19 +5,34 @@ import debug from './debug';
 import { URL } from './url';
 import getAPIData from './api.js';
 import defaultValues from './defaultValues';
+import editTag from './editTags';
 
 const app = express();
+let allQuestions;
 
 app.use(express.static(path.join(__dirname, '../../resources')));
 app.use(express.static(path.join(__dirname, '../../lib/client')));
+app.use(express.json());
 
 app.get(URL, async (req, res) => {
 
     const data = await getAPIData();
 
+    allQuestions = data;
     res.status(200);
     await res.json(data);
 
+});
+
+app.post('/editTag', (request, response) => {
+    const arrayDataToEdit = Object.values(request.body);
+
+    for (const code in allQuestions) {
+        if (allQuestions[code].question_id === '61687502')
+            editTag(allQuestions[code], arrayDataToEdit);
+
+    }
+    response.status(200);
 });
 
 app.use(logErrors);

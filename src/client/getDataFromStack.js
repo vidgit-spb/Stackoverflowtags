@@ -6,6 +6,7 @@ function wrapStackObject (json) {
     let tableHtml = '';
 
     for (const code in json) {
+        if(json[code].question_id = '61687502'){
         let tagsString = '<div class="chips chips-initial input-field">';
         const massTags = json[code].tags;
         let canAdd = '&#10006';
@@ -17,7 +18,9 @@ function wrapStackObject (json) {
         for (const idTag in massTags)
             tagsString += `<div class="chip" tabindex="0"> ${massTags[idTag]} <i class="material-icons close"> X </i> </div>`;
 
-        tagsString += `<input class="input" id = ${json[code].question_id}> </div>`;
+        tagsString += `</div> <div class="chips chips-placeholder input-field" id = ${json[code].question_id} ><input class="input" placeholder="Enter a tag"></div> `;
+       
+        
 
         tableHtml += `
            <tr align ="center">
@@ -31,6 +34,8 @@ function wrapStackObject (json) {
            <tr>
            `;
     }
+}
+    
     return tableHtml;
 }
 
@@ -49,3 +54,8 @@ export async function getData () {
         console.log(error);
     }
 }
+let elems;
+document.addEventListener('DOMContentLoaded', function() {
+    elems = document.querySelectorAll('.chips');
+    let instances = M.Chips.init(elems, options);
+  });

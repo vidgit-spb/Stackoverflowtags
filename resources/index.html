@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>Hello Node.js</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.2.5/system.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.2.5/extras/named-register.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.2.5/extras/named-register.js"></script>
     <div>
-        <a href="#!" class="btn-large waves-effect waves-light" id = "changeStackData">Add tag</a>
-    </div> 
+        <a href="#!" class="btn-large waves-effect waves-light" id="changeStackData">Add tag</a>
+    </div>
     <script type="systemjs-importmap">
         {
             "imports": {
@@ -17,29 +26,57 @@
         }
     </script>
 </head>
+
 <body>
-       
-    <table class= "centered">
+
+    <table class="centered">
         <thead>
             <th>Number</th>
             <th>Id</th>
             <th>Tags</th>
             <th>Info</th>
             <th>Max tags</th>
-        </thead>    
+        </thead>
         <tbody id="dataTable">
-            
+
         </tbody>
     </table>
     <script>
         (async () => {
             await System.import('bundle');
-
             const { getData } = await System.import('client/getDataFromStack');
 
-            getData();
-            setInterval(getData,5000);
+            await getData();
+
+
+            var elems = document.querySelectorAll('.chips');
+            var instances = M.Chips.init(elems);
+            $('.chips-placeholder').chips({
+                autocompleteOptions: {
+                    data: {
+                        'testing': null,
+                        'e2e': null,
+                        'testcafe': null
+                    }
+                },
+                onChipAdd: function (e) {
+                    let dataToSendOnServer = M.Chips.getInstance(document.getElementById(e[0].id)).chipsData;
+                    dataToSendOnServer["id"] = e[0].id;
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(dataToSendOnServer)
+                    }
+                    fetch('/editTag', options);
+                }
+
+
+            });
+
         })()
     </script>
 </body>
+
 </html>
