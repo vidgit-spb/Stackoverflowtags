@@ -4,9 +4,9 @@ import { URL }  from '../server/url.js';
 
 function wrapStackObject (json) {
     let tableHtml = '';
-
     for (const code in json) {
-        if(json[code].question_id = '61687502'){
+        if(json[code].question_id == '61687502'){
+           
         let tagsString = '<div class="chips chips-initial input-field">';
         const massTags = json[code].tags;
         let canAdd = '&#10006';
@@ -35,7 +35,8 @@ function wrapStackObject (json) {
            `;
     }
 }
-    
+    console.log(json.length);
+   
     return tableHtml;
 }
 
@@ -45,7 +46,7 @@ export async function getData () {
         const response = await fetch(URL);
         const json = await response.json();
         const table = document.querySelector('#dataTable');
-
+        
         if (!table)
             throw new Error('Cannot find the root table');
         table.innerHTML = wrapStackObject(json);

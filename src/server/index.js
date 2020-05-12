@@ -25,12 +25,27 @@ app.get(URL, async (req, res) => {
 });
 
 app.post('/editTag', (request, response) => {
-    const arrayDataToEdit = Object.values(request.body);
+     
 
     for (const code in allQuestions) {
-        if (allQuestions[code].question_id === '61687502')
-            editTag(allQuestions[code], arrayDataToEdit);
+        if (allQuestions[code].question_id == '61687502'){
+        let answerFromApp = request.body
+        console.log(answerFromApp.tagData);
+        var allTagsSet = new Set(allQuestions[code].tags);
+        
+            for (let [key, value] of Object.entries(answerFromApp.tagData)) {
+                allTagsSet.add(value.tag);
+              }
+            // allTags.add(answerFromApp[idTag]);
+            // console.log(answerFromApp[idTag]);
+            console.log(allTagsSet);
+            allQuestions[code].tags = [...allTagsSet];
 
+            console.log(allQuestions[code]);
+        // console.log(allTags);
+        // allQuestions[code].tags.concat(request.body.tags);
+            editTag(allQuestions[code],request.body);
+        }
     }
     response.status(200);
 });

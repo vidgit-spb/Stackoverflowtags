@@ -60,19 +60,21 @@
                     }
                 },
                 onChipAdd: function (e) {
-                    let dataToSendOnServer = M.Chips.getInstance(document.getElementById(e[0].id)).chipsData;
-                    dataToSendOnServer["id"] = e[0].id;
+                    const tagData = M.Chips.getInstance(document.getElementById(e[0].id)).chipsData;
+                    const bodyData = {tagData,question_id:e[0].id};
+                    
+                    // dataToSendOnServer.id = ;
+                    // console.log(dataToSendOnServer);               
                     const options = {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(dataToSendOnServer)
+                        body: JSON.stringify(bodyData)
                     }
+                    console.log(options);
                     fetch('/editTag', options);
                 }
-
-
             });
 
         })()
