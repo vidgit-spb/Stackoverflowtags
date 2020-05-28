@@ -6,11 +6,12 @@ import debug from './debug';
 
 const objectParams = {
     pagesize: 100,
-    order:    'desc',
-    sort:     'activity',
-    tagged:   'testcafe',
-    site:     'stackoverflow',
-    key:      defaultValues.key
+    order: 'desc',
+    sort: 'activity',
+    tagged: 'testcafe',
+    site: 'stackoverflow',
+    key: defaultValues.key,
+    filter: 'withbody'
 };
 
 objectParams['access_token'] = defaultValues.token;
@@ -21,7 +22,7 @@ const url = `https://api.stackexchange.com/2.2/questions?${params}`;
 export const urlParams = `${params}`;
 
 
-export default async function getData () {
+export default async function getData() {
     try {
         let bigJson = [];
         let hasMore = true;
