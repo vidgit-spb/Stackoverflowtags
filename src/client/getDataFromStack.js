@@ -4,9 +4,7 @@ import { URL }  from '../server/url.js';
 
 function wrapStackObject (json) {
     let tableHtml = '';
-    for (const code in json) {
-        if(json[code].question_id == '61687502'){
-           
+    for (const code in json) {           
         let tagsString = '<div class="chips chips-initial input-field">';
         const massTags = json[code].tags;
         let canAdd = '&#10006';
@@ -20,8 +18,6 @@ function wrapStackObject (json) {
 
         tagsString += `</div> <div class="chips chips-placeholder input-field" id = ${json[code].question_id} ><input class="input" placeholder="Enter a tag"></div> `;
        
-        
-
         tableHtml += `
            <tr align ="center">
            <td class = "hoverable" id = ${code}>${code} </td>
@@ -34,8 +30,6 @@ function wrapStackObject (json) {
            <tr>
            `;
     }
-}
-    console.log(json.length);
    
     return tableHtml;
 }
